@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://wlqfub3tge01"]
+
+[ext_resource type="Script" uid="uid://c4wsveh46u4gs" path="res://Player/Player_Controller.gd" id="1_3qydi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1o7ty"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_afiyv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1o7ty"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1.279541, 1.1373291, 0.65844727)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=2112220693 node_paths=PackedStringArray("camera", "Body", "Collision")]
+script = ExtResource("1_3qydi")
+camera = NodePath("CollisionShape3D2/Camera3D")
+Body = NodePath("Body")
+Collision = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2053353705]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_1o7ty")
+
+[node name="Body" type="Node3D" parent="." unique_id=1445622532]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body" unique_id=1517466664]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.3865136, -0.44640684)
+mesh = SubResource("BoxMesh_afiyv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=1485526214]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_1o7ty")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1488496461]
+transform = Transform3D(0.60206544, 0, 0, 0, 1.0001919, 0.000767943, 0, -0.00096041546, 0.799748, 0.032413006, 0.18369198, 1.9453616)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="Camera3D" type="Camera3D" parent="CollisionShape3D2" unique_id=1814717315]
+transform = Transform3D(1, 0, 0, 0, 0.9090182, 0.4167561, 0, -0.4167561, 0.9090182, -0.04260254, 0.34970343, 0.20127535)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=363270317]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.3865136, -0.44640684)
+shape = SubResource("BoxShape3D_yf5fn")

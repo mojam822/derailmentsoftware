@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://x1wdhu38t0y0"]
+
+[ext_resource type="Script" uid="uid://dd0dl2yte0g8r" path="res://Scripts/GameState.gd" id="1_e32lr"]
+[ext_resource type="Script" uid="uid://64mbbevct7yl" path="res://Scripts/SpawnManager.gd" id="2_edujn"]
+[ext_resource type="PackedScene" uid="uid://wlqfub3tge01" path="res://Player/Player.tscn" id="3_i5nq2"]
+[ext_resource type="Script" uid="uid://bsxf581ixfwci" path="res://addons/godotvmf/src/vmf_node.gd" id="4_ugwxx"]
+[ext_resource type="ArrayMesh" uid="uid://dr5efq64ccxi0" path="res://geometry/gh_cottage__vmf_import.mesh" id="5_m5do6"]
+[ext_resource type="Shape3D" uid="uid://ddvp42encnjrl" path="res://geometry/gh_cottage__vmf_collision_surface_prop_default.res" id="6_ee6vw"]
+
+[node name="Game_Scene" type="Node3D" unique_id=1617849034]
+
+[node name="SpawnPosition" type="Node3D" parent="." unique_id=354279347]
+transform = Transform3D(0.9998477, 0, 0.017452406, 0, 1, 0, -0.017452406, 0, 0.9998477, 0, 0, 0)
+
+[node name="GameState" type="Node" parent="." unique_id=438307203]
+script = ExtResource("1_e32lr")
+
+[node name="SpawnManager" type="Node" parent="." unique_id=548824088 node_paths=PackedStringArray("Player_SpawnPos")]
+script = ExtResource("2_edujn")
+Player_SpawnPos = NodePath("../SpawnPosition")
+Player_Prefab = ExtResource("3_i5nq2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1871329707]
+transform = Transform3D(-0.3697468, 0.72714674, 0.57839864, 0, -0.6225146, 0.7826082, 0.9291326, 0.28936687, 0.23017278, 18.840744, 10.051349, 0)
+
+[node name="VMFNode" type="Node3D" parent="." unique_id=1058301921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.525053, 0)
+script = ExtResource("4_ugwxx")
+use_external_file = true
+vmf = "C:/Users/rjcsg/Documents/Grim Hollow/gh_cottage_.vmf"
+metadata/_custom_type_script = "uid://bsxf581ixfwci"
+
+[node name="Geometry" type="MeshInstance3D" parent="VMFNode" unique_id=2060971554]
+mesh = ExtResource("5_m5do6")
+
+[node name="surface_prop_default" type="StaticBody3D" parent="VMFNode/Geometry" unique_id=427603341]
+metadata/surface_prop = "default"
+
+[node name="collision" type="CollisionShape3D" parent="VMFNode/Geometry/surface_prop_default" unique_id=1844207903]
+shape = ExtResource("6_ee6vw")
+
+[node name="Entities" type="Node3D" parent="VMFNode" unique_id=669152384]
